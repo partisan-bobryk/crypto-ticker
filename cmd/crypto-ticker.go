@@ -35,7 +35,7 @@ func onReady() {
 func onExit() {}
 
 func setDisplayValues() {
-	coinIds := []string{"bitcoin", "chainlink", "polkadot", "ethereum"}
+	coinIds := []string{"bitcoin", "chainlink", "polkadot", "ethereum", "enjincoin"}
 	queryIds := strings.Join(coinIds, "%2C")
 
 	// Make a network call for the list of coins
@@ -49,12 +49,14 @@ func setDisplayValues() {
 	}
 
 	defer res.Body.Close()
+
 	json.NewDecoder(res.Body).Decode(&jsonPayload)
 
 	var ticker string
 
 	ticker = fmt.Sprintf(
-		"DOT $%4.2f | LINK $%4.2f | BTC $%6.2f | ETH $%4.2f",
+		"ENJ $%4.2f | DOT $%4.2f | LINK $%4.2f | BTC $%6.2f | ETH $%4.2f",
+		jsonPayload["enjincoin"]["usd"],
 		jsonPayload["polkadot"]["usd"],
 		jsonPayload["chainlink"]["usd"],
 		jsonPayload["bitcoin"]["usd"],
@@ -64,28 +66,12 @@ func setDisplayValues() {
 }
 
 func registerCoins() {
-	// testCoin1 := coinDisplay{
-	// 	CoinStats: coinStats{
-	// 		Name: "chainlink",
-	// 	},
-	// }
-	// testCoin2 := coinDisplay{
-	// 	CoinStats: coinStats{
-	// 		Name: "polkadot",
-	// 	},
-	// }
-	// coinDisplayList := []coinDisplay{testCoin1, testCoin2}
-
 	go func() {
 		for {
 			setDisplayValues()
 			time.Sleep(1 * time.Minute)
 		}
 	}()
-
-	// for _, coin := range coinDisplayList {
-	// 	coin.Register()
-	// }
 }
 
 type coinStats struct {
