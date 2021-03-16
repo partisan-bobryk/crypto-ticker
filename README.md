@@ -9,5 +9,6 @@ __MacOS__
 
 __Linux__
 1. Pull down repo
-2. Using latest go version run `go build -o ./bin/coin-watch ./cmd/crypto-ticker.go` in the root directory. 
-3. Run the compiled executable. `./bin/coin-watch`
+2. Make sure you have libgtk-3 installed. Install by running `sudo apt-get install gcc libgtk-3-dev libappindicator3-dev`.
+3. Using latest go version run `go build -o ./bin/coin-watch ./cmd/crypto-ticker.go` in the root directory. 
+4. Run the compiled executable. `./bin/coin-watch`
