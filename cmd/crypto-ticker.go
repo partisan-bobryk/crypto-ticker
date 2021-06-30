@@ -35,7 +35,7 @@ func onReady() {
 func onExit() {}
 
 func setDisplayValues() {
-	coinIds := []string{"bitcoin", "chainlink", "polkadot", "ethereum", "enjincoin"}
+	coinIds := []string{"bitcoin", "stellar", "matic-network", "ethereum", "enjincoin"}
 	queryIds := strings.Join(coinIds, "%2C")
 
 	// Make a network call for the list of coins
@@ -55,10 +55,10 @@ func setDisplayValues() {
 	var ticker string
 
 	ticker = fmt.Sprintf(
-		"ENJ $%4.2f | DOT $%4.2f | LINK $%4.2f | BTC $%6.2f | ETH $%4.2f",
+		"ENJ $%4.2f | MATIC $%4.2f | XLM $%4.2f | BTC $%6.2f | ETH $%4.2f",
 		jsonPayload["enjincoin"]["usd"],
-		jsonPayload["polkadot"]["usd"],
-		jsonPayload["chainlink"]["usd"],
+		jsonPayload["matic-network"]["usd"],
+		jsonPayload["stellar"]["usd"],
 		jsonPayload["bitcoin"]["usd"],
 		jsonPayload["ethereum"]["usd"],
 	)
